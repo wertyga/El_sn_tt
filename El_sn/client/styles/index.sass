@@ -1,0 +1,125 @@
+@import './vars'
+
+body
+  box-sizing: border-box
+  margin: 0
+  font-size: 14px
+  user-select: none
+  color: $fontColor
+  background-color: $bgColor
+
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  outline: none
+
+ul
+  list-style-type: none
+  padding: 0
+  margin: 0
+
+a, a:hover, a:active
+  text-decoration: none
+  outline: none
+  color: $mainColor
+
+button:focus
+  outline: none
+
+.text-left
+  text-align: left
+.text-right
+  text-align: right
+.text-center
+  text-align: center
+.block
+  display: block
+.inline
+  display: inline-block
+.no-padding
+  padding: 0
+.no-margin
+  margin: 0
+
+button
+  padding: 10px 15px
+  color: #ffffff
+  font-weight: bold
+  border: none
+  border-radius: 3px
+  cursor: pointer
+  margin: 5px 0
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4)
+  &.primary
+    background-color: $mainColor
+  &.secondary
+    background-color: $secondaryColor
+  &.danger
+    background-color: $dangerColor
+  &.simple
+    background-color: transparent
+  &.success
+    background-color: $successColor
+  &:disabled
+    background-color: $disableBgColor
+    cursor: not-allowed
+  &.active, &:active
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.4)
+    background-color: $mainColorDark
+
+input
+  color: $fontColor
+
+.error
+  color: $dangerColorLight
+  width: 100%
+  text-align: center
+  padding: 15px 0
+
+.upper_black
+  padding: 10px 20px
+  background-color: $upperMenuBgColor
+  width: 100%
+  display: inline-flex
+  align-items: center
+  color: $fontColor
+  font-size: 16px
+  margin: 0 0 85px 0
+  font-weight: bold
+  cursor: pointer
+  &:hover
+    color: $fontColor
+  i
+    font-size: 30px
+    margin-right: 10px
+
+// fontAwesome
+.fa,
+.fas
+  font-family: 'FontAwesomeRegular'
+  font-weight: 900
+.fa,
+.fas,
+.far,
+.fal,
+.fab
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  display: inline-block
+  font-style: normal
+  font-variant: normal
+  text-rendering: auto
+  line-height: 1
+.fa-arrow-alt-circle-up:before
+  content: "\f35b"
+.fa-angle-down:before
+  content: "\f107"
+.fa-angle-left:before
+  content: "\f104"
+.fa-angle-right:before
+  content: "\f105"
+.fa-angle-up:before
+  content: "\f106"
+
+@import './media.sass'

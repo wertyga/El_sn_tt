@@ -1,0 +1,39 @@
+@import '../../styles/vars'
+
+.AddingPair
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 10
+  background-color: rgba(0,0,0, 0.5)
+  display: flex
+  justify-content: center
+  padding-top: 10%
+  .wrapper
+    background-color: $mainColorDark
+    padding: 20px 30px
+    border: 1px solid $borderColor
+    display: flex
+    flex-direction: column
+    max-width: 500px
+    border-radius: 5px
+    position: absolute
+    top: 50%
+    transform: translateY(-75%)
+    .Input
+      width: 100%
+      padding-bottom: 20px
+    .content
+      width: 100%
+      span
+        margin-right: 10px
+    .footer
+      display: flex
+      justify-content: space-between
+      flex-direction: column
+  .current_price
+    margin: 10px 0
+  .error
+    padding: 10px 0

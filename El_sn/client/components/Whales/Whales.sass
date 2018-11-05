@@ -1,0 +1,105 @@
+@import '../../styles/vars'
+
+.Whales
+  .orders
+    &_buttons__buy-sell
+      margin-bottom: 10px
+      > *
+        margin-bottom: 0
+      .buyOrders
+        color: $successColorLight
+        margin-right: 20px
+      .sellOrders
+        color: $dangerColor
+    &_buttons__currency
+      margin-bottom: 40px
+
+  .whales_wrapper
+    padding: 0 20px 20px 20px
+  i
+    color: $fontColor
+  .order
+    display: flex
+    width: 100%
+    margin-right: 10px
+    margin-bottom: 10px
+  .data
+    height: 100%
+    transform-origin: 50% 0
+    display: flex
+    flex-wrap: wrap
+    flex-direction: column
+    &.close
+      height: 0
+      overflow: hidden
+  .symbol
+    font-weight: bold
+    width: 100px
+    cursor: pointer
+    display: flex
+    justify-content: space-between
+    i
+      margin-left: 5px
+      font-size: 20px
+      margin-top: -3px
+      &.back
+        font-size: 30px
+  .back
+    cursor: pointer
+  ul
+    margin-left: 20px
+    display: inline-flex
+    margin-bottom: 5px
+    background-color: $mainColor
+    border-radius: 5px
+    li
+      padding: 10px
+      color: #fff
+      width: 160px
+  .back
+    display: block
+    font-size: 30px
+    background-color: $upperMenuBgColor
+    padding: 10px 20px
+  .input
+    margin: 20px 0
+    display: flex
+    align-items: center
+    label
+      //width: 100px
+    input
+      padding: 3px
+      border: 1px solid $borderColor
+      margin-left: 20px
+      border-radius: 3px
+    .upper
+      display: flex
+      align-items: center
+    strong
+      white-space: nowrap
+    i.reload
+      //color: $mainColor
+      font-size: 28px
+      margin-left: 10px
+      cursor: pointer
+      &:disabled
+        color: $disableTextColor
+      &.loading
+        animation: loading 1s infinite linear
+
+  .inner
+    display: flex
+    align-items: center
+    input
+      color: $mainColor
+    strong
+      margin-left: 10px
+  .empty
+    font-size: 20px
+    text-align: center
+
+@keyframes loading
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)

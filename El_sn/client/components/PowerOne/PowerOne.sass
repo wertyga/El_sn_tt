@@ -1,0 +1,38 @@
+@import '../../styles/vars'
+
+.PowerOne
+  padding: 10px 20px 20px
+  border-bottom: 1px solid $mainColorLight
+  cursor: pointer
+  transition: background-color .5s
+  &.active
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.5) inset
+    background-color: $mainColorDark !important
+  & > div:not(.symbol)
+    margin-bottom: 3px
+    margin-left: 15px
+  &.new
+    background-color: $successColor
+  &:hover
+    background-color: $mainColor
+  .symbol
+    margin-bottom: 5px
+    strong
+      font-size: 20px
+      margin-right: 10px
+      margin-bottom: 10px
+  .percent
+    strong
+      font-size: 20px
+  .high
+    span:first-child, span:last-of-type
+      margin-right: 5px
+    strong:first-of-type
+      margin-right: 10px
+  .negative
+    color: $dangerColorLight
+  .positive
+    color: $successColorLight
+
+  .error
+    text-align: center

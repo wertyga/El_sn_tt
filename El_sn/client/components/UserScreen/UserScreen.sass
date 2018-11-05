@@ -1,0 +1,83 @@
+@import '../../styles/vars'
+
+.UserScreen
+  overflow: hidden
+  min-height: 100vh
+  position: relative
+  .user_data
+    display: flex
+    align-items: center
+  .content_wrapper
+    padding: 30px 30px
+    padding-top: 85px
+  .content
+    width: 80%
+    margin: 0 auto
+  .options
+    display: flex
+    button
+      margin-top: 15px
+      width: 100%
+  .percentPairs
+    position: absolute
+    top: 20px
+    right: 20px
+    background-color: #eeeeee
+    border: 1px solid #7f7f7f
+    padding: 10px
+  .percent
+    margin-bottom: 10px
+  .upper_bar
+    display: inline-flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    padding: 10px 20px
+    background-color: $upperMenuBgColor
+    .upper_name
+      margin-left: 20px
+      font-weight: bold
+      text-transform: capitalize
+      letter-spacing: 1px
+      font-size: 17px
+    .email
+      margin-left: 20px
+    .left
+      display: inline-flex
+      align-items: center
+      max-width: 80%
+      overflow: hidden
+  .main_content
+    display: inline-flex
+    flex-direction: column
+  .Toggle
+    border-right: 1px solid $mainColor
+  .Option
+    .other-content
+      max-height: 65vh
+      overflow-y: scroll
+  .pairsList
+    width: 100%
+    display: flex
+    margin: 0 auto
+    //justify-content: space-between
+    flex-wrap: wrap
+  .Input
+    width: 100%
+  .ButterMenu
+    li.sign
+      color: $successColorLight
+  .right
+    display: flex
+    align-items: center
+  .settings
+    cursor: pointer
+    margin-right: 45px
+    transform: rotate(0deg)
+    transition: transform .8s
+    &.active
+      transform: rotate(180deg)
+    i
+      font-size: 23px
+
+

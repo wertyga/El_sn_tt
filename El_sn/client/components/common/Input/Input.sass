@@ -1,0 +1,55 @@
+@import '../../../styles/vars.sass'
+
+.Input
+  width: 30%
+  position: relative
+  margin-top: 20px
+  color: $fontColor
+  .borderBottom
+    position: absolute
+    width: 100%
+    height: 1px
+    background-color: $mainColor
+    bottom: 0
+    left: 0
+  input
+    border: none
+    margin-top: 20px
+    background-color: transparent
+    width: 100%
+    padding: 10px 5px
+    &::placeholder
+      color: $disableTextColor
+    &.focus
+      border-bottom: none
+    &:focus
+      outline: none
+  .floatText
+    position: absolute
+    top: -10px
+    left: 0
+    transform: scale(0, 0)
+    transform-origin: left bottom
+    transition: all .5s
+    color: $secondaryColor
+    &.focus
+      transform: scale(1, 1)
+  .after
+    &.focus
+      transform: scale(1, 1)
+    height: 3px
+    background-color: $secondaryColor
+    transform: scale(0, 0)
+    transition: all .5s
+    width: 100%
+    position: absolute
+    bottom: 0
+    display: block
+  .error
+    text-align: left
+    display: block
+    color: red
+    padding-top: 10px
+  .label
+    font-weight: bold
+    padding-bottom: 5px

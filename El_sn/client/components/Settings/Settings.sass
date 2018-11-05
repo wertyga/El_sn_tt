@@ -1,0 +1,38 @@
+@import '../../styles/vars'
+
+.Settings
+  h2
+    margin-bottom: 60px
+  .positive, .negative
+    font-weight: bold
+    font-size: 20px
+  .positive
+    color: $successColorLight
+  .negative
+    color: $dangerColorLight
+  .username, .email, .extention
+    margin-bottom: 20px
+    span:first-child
+      font-weight: bold
+      font-size: 18px
+      //margin-right: 20px
+      transition: color .5s
+    &.edit
+      span
+        color: $secondaryColor
+  .subscribe, .extention
+    display: flex
+    align-items: center
+    margin-bottom: 20px
+    span:first-child
+      font-size: 18px
+      font-weight: bold
+      width: 234px
+      margin-right: 20px
+    input
+      width: 20px
+      height: 20px
+      cursor: pointer
+
+  .Input
+    width: initial
