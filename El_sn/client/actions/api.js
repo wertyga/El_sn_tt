@@ -4,6 +4,7 @@ import * as consts from './constants';
 import { setUser } from './auth';
 
 import { setPercent } from './socket';
+import {SET_POWER_PERCENT} from "./constants";
 
 export function setPairs(pairs) { // Update actual trade pairs
     return {
@@ -109,10 +110,21 @@ export const deletePower = (powerId, userId) => dispatch => {
     return axios.get(host(`/api/${userId}/delete-power/${powerId}`))
         .then(() => dispatch(deletePowerAction(powerId)));
 };
+export const deleteAllPower = (userId) => dispatch => {
+   return axios.get(host(`/api/${userId}/delete-all-power`))
+     .then(() => dispatch(deleteAllPowerAction()));
+};
+
 const deletePowerAction = powerId => {
     return {
         type: consts.DELETE_POWER,
         powerId
     }
+};
+const deleteAllPowerAction = () => {
+   return {
+      type: consts.SET_POWER_PERCENT,
+      data: [],
+   }
 };
 

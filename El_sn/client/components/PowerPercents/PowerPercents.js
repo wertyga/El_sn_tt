@@ -6,11 +6,19 @@ import { Link } from 'react-router-dom';
 
 import clearSession from "../../common/functions/clearSession";
 
-import { fetchPowerSymbols, deletePower } from '../../actions/api';
+import { fetchPowerSymbols, deleteAllPower } from '../../actions/api';
 
 import PowerOne from '../PowerOne/PowerOne';
 
 import './PowerPercents.sass';
+
+const PercentButtons = ({ handle }) => (
+  <div className="power-percents__buttons">
+     <button className="power-percents__buttons__item btn primary" onClick={handle}>
+        Delete all
+     </button>
+  </div>
+);
 
 class PowerPercents extends React.Component {
     constructor(props) {
@@ -34,12 +42,13 @@ class PowerPercents extends React.Component {
         };
     };
 
-    deletePower = id => {
-        return this.props.deletePower(id, this.props.user._id)
-            .catch(err => {
-                const errors = clearSession(this, err);
-                if(errors) this.setState({ errors });
-            })
+    deleteAll = () => {
+       this.setState({ error: '' });
+       return this.props.deleteAllPower(this.props.user._id)
+         .catch(err => {
+            const errors = clearSession(this, err);
+            if(errors) this.setState({ errors });
+         })
     };
 
     render() {
@@ -55,6 +64,7 @@ class PowerPercents extends React.Component {
                 {this.state.errors && <div className="error">{this.state.errors}</div>}
 
                 <div className="power_wrapper">
+                   {this.props.powers.length > 0 && <PercentButtons handle={this.deleteAll}/>}
                     {this.props.powers.map(item =>
                         <PowerOne
                             key={item._id}
@@ -82,4 +92,4 @@ const mapState = state => {
     }
 };
 
-export default connect(mapState, { fetchPowerSymbols })(PowerPercents);
+export default connect(mapState, { fetchPowerSymbols, deleteAllPower })(PowerPercents);

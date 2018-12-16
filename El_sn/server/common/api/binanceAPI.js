@@ -1,6 +1,8 @@
 import axios from 'axios';
 import WebSocket from '../WebSocket';
 
+const log = require('../log')(module);
+
 export default class BinanceApi {
     constructor() {
         this.baseUrl = 'https://api.binance.com';
@@ -86,7 +88,8 @@ export default class BinanceApi {
                 limit
             }
         })
-            .then(res => res.data);
+          .then(res => res.data)
+          .catch(e => log.error(`Error in "getOrdersBook": ${e.response.data.msg} - ${symbol}`))
     };
 };
 

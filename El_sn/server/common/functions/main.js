@@ -1,3 +1,6 @@
+import shortID from 'shortid';
+import axios from 'axios';
+
 const log = require('../log')(module);
 
 import config from '../config';
@@ -14,6 +17,8 @@ export const api = new Api();
 export const lowPercent = process.env.LOW_PERCENT;
 export const growPercent = process.env.GROW_PERCENT;
 export const interval = process.env.INTERVAL;
+
+const { mainCoin } = config;
 
 export function getTradePairs() { //Fetch available trade pairs
     return ActualPairs.find({}, 'symbol baseAsset quoteAsset')
@@ -43,9 +48,7 @@ export function checkPairsForSignPrice() { // Check all pairs for compare to sig
         })
 };
 
-const { mainCoin } = config;
-
-const getWhaleData = (data, type) => {
+const getWhaleData = (data = [], type) => {
    return data.map(item => {
       return item[type].reduce((initObj, innerArr) => {
          initObj.symbol = innerArr.symbol;
@@ -74,9 +77,9 @@ function getWhalesOrders() { // Get whales orders
         .then(pairs => {
             return Promise.all(pairs.filter(item => ignore.indexOf(item.symbol) === -1).map(pair => {
                 return api.getOrdersBook(pair.symbol)
-                    .then(data => {
+                    .then((data = {}) => {
                         return {
-                            bids: data.bids.map(item => {
+                            bids: (data.bids || []).map(item => {
                                 return {
                                     symbol: pair.symbol,
                                     data: {
@@ -86,7 +89,7 @@ function getWhalesOrders() { // Get whales orders
                                     }
                                 }
                             }),
-                            asks: data.asks.map(item => {
+                            asks: (data.asks || []).map(item => {
                                 return {
                                     symbol: pair.symbol,
                                     data: {
@@ -194,6 +197,15 @@ function getTime() { // Get server time
         .catch(err => console.log(`Error in "getTime": ${err}`))
 };
 
+const sendServerToken = () => {
+   const fiveMin = 1000 * 60 * 5;
+   return setInterval(() => {
+      process.env.SERVER_TOKEN = shortID.generate();
+      axios.get(`${config.siteHost}/server-token/${process.env.SERVER_TOKEN}`)
+        .catch(e => log.error(`Error in "sendServerToken": ${e.message}`))
+   }, fiveMin);
+};
+
 // Intervals
  setInterval(() => {
      checkPairsForSignPrice();
@@ -206,6 +218,7 @@ setInterval(() => {
  }, 60000 * 60);
 
 getExchangeInfo().then(() => Promise.all([getKlineDataIO(interval), checkPairsForSignPrice(), getWhalesOrders()]));
+sendServerToken();
 
 
 

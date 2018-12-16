@@ -178,10 +178,18 @@ routes.get('/:userId/delete-power/:powerId', (req, res) => {
                 res.status(401).json({ redirect: '/app/login' });
             } else {
                 user.percents = user.percents.filter(item => item.percentId.toString() !== powerId);
-                return user.save().then(user => res.json(`Success deleted ${powerId} power symbol`))
+                return user.save().then(() => res.json(`Success deleted ${powerId} power symbol`))
             };
         })
         .catch(err => res.status(500).json(err.message))
+});
+
+routes.get('/:userID/delete-all-power/', (req, res) => {
+   const { userID } = req.params;
+
+   return User.findByIdAndUpdate(userID, { percents: [] })
+     .then(() => res.json('deleted all percents'))
+     .catch(e => res.status(404).json(e.message))
 });
 
 export default routes;
